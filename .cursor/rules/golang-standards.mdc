@@ -1,0 +1,50 @@
+---
+description: Go coding standards for Claude Session Manager TUI
+globs: "**/*.go"
+alwaysApply: false
+---
+
+# Go Coding Standards
+
+## Project Structure
+
+```
+cmd/main.go           - Entry point
+internal/model/       - Data types and persistence
+internal/tmux/        - Tmux operations
+internal/tui/         - TUI components (bubbletea)
+```
+
+## Conventions
+
+- Use `bubbletea` for TUI, `lipgloss` for styling, `bubbles` for input components
+- All exported functions must have doc comments
+- Error messages should be lowercase without trailing punctuation
+- Use `internal/` to prevent external imports
+- Data persistence via JSON at `~/.config/claude-session-manager/data.json`
+
+## TUI Architecture
+
+- Single `Model` struct with all state in `internal/tui/app.go`
+- Dialog/modal states handled via `dialogMode` enum
+- Panel focus managed via `focusPanel` enum
+- Use `tea.ExecProcess` for tmux attach (suspend TUI, resume on detach)
+
+## Error Handling
+
+```go
+// ❌ BAD
+result, _ := doSomething()
+
+// ✅ GOOD
+result, err := doSomething()
+if err != nil {
+    return fmt.Errorf("failed to do something: %w", err)
+}
+```
+
+## Naming
+
+- Unexported types for internal TUI state: `focusPanel`, `dialogMode`
+- Store methods: `AddGroup`, `DeleteGroup`, `AddSession`, `DeleteSession`
+- Tmux functions: `IsInstalled`, `SessionExists`, `NewSession`, `AttachCmd`

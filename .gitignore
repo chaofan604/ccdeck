@@ -1,0 +1,6 @@
+claude-sm
+*.exe
+*.dll
+*.so
+*.dylib
+.DS_Store

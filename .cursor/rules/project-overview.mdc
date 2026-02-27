@@ -1,0 +1,36 @@
+---
+description: Project overview and architecture for Claude Session Manager
+alwaysApply: true
+---
+
+# Claude Session Manager TUI
+
+A Go TUI tool for managing multiple Claude Code sessions via tmux.
+
+## Core Features
+
+1. **Groups** - Organize sessions into named groups
+2. **Sessions** - Each session has a project path and Claude session ID
+3. **Tmux Integration** - Creates tmux sessions running `claude -r <session_id>`
+4. **Persistence** - All data saved to `~/.config/claude-session-manager/data.json`
+
+## Key Workflow
+
+1. User opens TUI → sees groups on left, sessions on right
+2. Press `g` to create a new group
+3. Press `n` to create a new session (popup dialog for path + session_id)
+4. Press `Enter` to attach to a session via tmux
+5. Detach from tmux (`Ctrl+B, D`) returns to TUI
+
+## Dependencies
+
+- `github.com/charmbracelet/bubbletea` - TUI framework
+- `github.com/charmbracelet/lipgloss` - Terminal styling
+- `github.com/charmbracelet/bubbles` - Input components
+
+## Build & Run
+
+```bash
+go build -o claude-sm ./cmd/
+./claude-sm
+```
