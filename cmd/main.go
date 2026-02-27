@@ -13,7 +13,7 @@ import (
 
 // These are populated at build time via -ldflags.
 // Example:
-//   go build -ldflags "-X 'main.Version=v0.1.0' -X 'main.Commit=abc1234'" -o claude-sm ./cmd/
+//   go build -ldflags "-X 'main.Version=v0.1.0' -X 'main.Commit=abc1234'" -o ccdeck ./cmd/
 var (
 	Version = "dev"
 	Commit  = "unknown"
@@ -23,7 +23,7 @@ func main() {
 	if len(os.Args) > 1 {
 		switch os.Args[1] {
 		case "--version", "-v":
-			fmt.Printf("claude-sm %s (%s)\n", Version, Commit)
+			fmt.Printf("ccdeck %s (%s)\n", Version, Commit)
 			return
 		}
 	}

@@ -27,27 +27,27 @@ A terminal UI tool for managing multiple [Claude Code](https://docs.anthropic.co
 ```bash
 git clone <repo-url> && cd agent_manger_tui
 # simple build
-go build -o claude-sm ./cmd/
+go build -o ccdeck ./cmd/
 
 # build with version info
-go build -ldflags "-X 'main.Version=v0.1.0' -X 'main.Commit=$(git rev-parse --short HEAD)'" -o claude-sm ./cmd/
+go build -ldflags "-X 'main.Version=v0.1.0' -X 'main.Commit=$(git rev-parse --short HEAD)'" -o ccdeck ./cmd/
 ```
 
 Move the binary to your PATH:
 
 ```bash
-mv claude-sm /usr/local/bin/
+mv ccdeck /usr/local/bin/
 ```
 
 ## Usage
 
 ```bash
-claude-sm
+ccdeck
 
 # show version
-claude-sm --version
+ccdeck --version
 # or
-claude-sm -v
+ccdeck -v
 ```
 
 ### Quick Start
